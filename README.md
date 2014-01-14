@@ -1,6 +1,6 @@
 # Vim配置
 
-启动配置与插件安装记录，目前插件主要针对python开发使用
+启动配置与插件安装记录，目前插件主要针对python开发使用  
 基于`gVim Portable` [http://portableapps.com/apps/development/gvim_portable] 软件进行相关配置
 
 ---
@@ -21,19 +21,20 @@
 
 
 三个独立插件如下（不需要再独立进行相关配置设定）
---
- |-- taglist.vim
- |     http://www.vim.org/scripts/script.php?script_id=273
- |     需要分析源代码的工具Ctags(http://ctags.sourceforge.net/)，
- |     解压缩后拷贝ctags.exe到app下的vim安装位置，或者放于system32
- |
- |-- SrcExpl
- |     http://www.vim.org/scripts/script.php?script_id=2179
- |     可以处定义跳转设定
- |
- |-- The NERD tree
- |     http://www.vim.org/scripts/script.php?script_id=1658
- |
+
+	－－
+	 |-- taglist.vim
+	 |     http://www.vim.org/scripts/script.php?script_id=273
+	 |     需要分析源代码的工具Ctags(http://ctags.sourceforge.net/)，
+	 |     解压缩后拷贝ctags.exe到app下的vim安装位置，或者放于system32
+	 |
+	 |-- SrcExpl
+	 |     http://www.vim.org/scripts/script.php?script_id=2179
+	 |     可以处定义跳转设定
+	 |
+	 |-- The NERD tree
+	 |     http://www.vim.org/scripts/script.php?script_id=1658
+	 |
 
 
 
@@ -45,16 +46,16 @@
 
 NERD Commenter的常用键绑定，以C/C++文件为例，详析的使用方法，请:h NERDCommenter。在Normal或者Visual 模式下：
 
-`\ca`，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
-`\cc`，注释当前行，或者选定块
-`\c `，切换注释/非注释状态
-`\ci`, 切换注释 individually
-`\cs`，以”性感”的方式注释
-`\cA`，在当前行尾添加注释符，并进入Insert模式
-`\cu`，取消注释
-`\c$`, 从当前光标注释到行结尾
-Normal模式下，几乎所有命令前面都可以指定行数
-Visual模式下执行命令，会对选中的特定区块进行注释/反注释
+`\ca`，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//  
+`\cc`，注释当前行，或者选定块  
+`\c `，切换注释/非注释状态  
+`\ci`, 切换注释 individually  
+`\cs`，以”性感”的方式注释  
+`\cA`，在当前行尾添加注释符，并进入Insert模式  
+`\cu`，取消注释  
+`\c$`, 从当前光标注释到行结尾  
+Normal模式下，几乎所有命令前面都可以指定行数  
+Visual模式下执行命令，会对选中的特定区块进行注释/反注释  
 
 使用该插件需要设置 `filetype plugin on`
 
@@ -70,10 +71,10 @@ Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 There are a growing number of optional features in this script that are enabled by letting variables in your .vimrc:
 
-  `control + the vim direction keys [hjkl]` can be made to move you between windows.
-  `control + arrow keys` can be made to do the same thing
-  `control + tab` & `shift + control + tab` can be setup to switch through your open windows (like in MS Windows)
-  `control + tab` & `shift + control + tab` can alternatively be setup to cycle forwards and backwards through your modifiable buffers in the current window
+  `control + the vim direction keys [hjkl]` can be made to move you between windows.  
+  `control + arrow keys` can be made to do the same thing  
+  `control + tab` & `shift + control + tab` can be setup to switch through your open windows (like in MS Windows)  
+  `control + tab` & `shift + control + tab` can alternatively be setup to cycle forwards and backwards through your modifiable buffers in the current window  
 
 NOTE: Some versions of vim don't support all of the key mappings that this script uses so you may experience degraded functionality. For example on Solaris SHIFT-TAB appears to fire the regular TAB mappings (same for console and gvim.) Also CONTROL+ARROWS appears to work in gvim on Solaris, but not in my xterm. All of the key bindings appear to work in Windows.
 
@@ -129,9 +130,9 @@ You can set language attribute in html using emmet_settings['lang'].
 	2014年1月13日 14:41:29
 
 
-`CTRL-Y`       Accept the currently selected match and stop completion.
-`<Space>`      Accept the currently selected match and insert a space.
-`CTRL-E`       Close the menu and not accept any match.
+`CTRL-Y`    Accept the currently selected match and stop completion.  
+`<Space>`   Accept the currently selected match and insert a space.  
+`CTRL-E`    Close the menu and not accept any match.  
 
 
 	filetype plugin on
