@@ -1,13 +1,13 @@
 # Vim配置
 
-启动配置与插件安装记录，目前插件主要针对python开发使用  
-基于gVim Portable http://portableapps.com/apps/development/gvim_portable 软件进行相关配置
+启动配置与插件安装记录，目前插件主要针对python开发使用
+基于`gVim Portable` [http://portableapps.com/apps/development/gvim_portable] 软件进行相关配置
 
 ---
 
 ### trinity.vim
 
-	Trinity : the Trinity of taglist, NERDtree and SrcExpl: an IDE works like "Source Insight" 
+	Trinity : the Trinity of taglist, NERDtree and SrcExpl: an IDE works like "Source Insight"
 	http://www.vim.org/scripts/script.php?script_id=2347
 	一站式开发集成插件，调用taglist,tree,srcexpl三个插件进行函数列表、文件目录
 	2014年1月13日 14:21:32
@@ -15,9 +15,9 @@
 根据在vimrc文件中的设置来开关相应的功能窗口
 
 	nmap <F8>   :TrinityToggleAll<CR>             " 切换三个插件显示
-	nmap <F9>   :TrinityToggleSourceExplorer<CR>  " 切换源码提示插件 
-	nmap <F10>  :TrinityToggleTagList<CR>         " 切换函数列表插件 
-	nmap <F11>  :TrinityToggleNERDTree<CR>        " 切换文件目录插件 
+	nmap <F9>   :TrinityToggleSourceExplorer<CR>  " 切换源码提示插件
+	nmap <F10>  :TrinityToggleTagList<CR>         " 切换函数列表插件
+	nmap <F11>  :TrinityToggleNERDTree<CR>        " 切换文件目录插件
 
 
 三个独立插件如下（不需要再独立进行相关配置设定）
@@ -68,22 +68,22 @@ Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 	缓冲区查看，可以快速在已编辑过的文件之间进行切换
 	2014年1月13日 14:24:34
 
-There are a growing number of optional features in this script that are enabled by letting variables in your .vimrc: 
+There are a growing number of optional features in this script that are enabled by letting variables in your .vimrc:
 
-  `control + the vim direction keys [hjkl]` can be made to move you between windows. 
-  `control + arrow keys` can be made to do the same thing 
-  `control + tab` & `shift + control + tab` can be setup to switch through your open windows (like in MS Windows) 
-  `control + tab` & `shift + control + tab` can alternatively be setup to cycle forwards and backwards through your modifiable buffers in the current window 
+  `control + the vim direction keys [hjkl]` can be made to move you between windows.
+  `control + arrow keys` can be made to do the same thing
+  `control + tab` & `shift + control + tab` can be setup to switch through your open windows (like in MS Windows)
+  `control + tab` & `shift + control + tab` can alternatively be setup to cycle forwards and backwards through your modifiable buffers in the current window
 
-NOTE: Some versions of vim don't support all of the key mappings that this script uses so you may experience degraded functionality. For example on Solaris SHIFT-TAB appears to fire the regular TAB mappings (same for console and gvim.) Also CONTROL+ARROWS appears to work in gvim on Solaris, but not in my xterm. All of the key bindings appear to work in Windows. 
+NOTE: Some versions of vim don't support all of the key mappings that this script uses so you may experience degraded functionality. For example on Solaris SHIFT-TAB appears to fire the regular TAB mappings (same for console and gvim.) Also CONTROL+ARROWS appears to work in gvim on Solaris, but not in my xterm. All of the key bindings appear to work in Windows.
 
 
-If you want to enable extra functionality (documented in the source) you might want to add the following to your .vimrc: 
+If you want to enable extra functionality (documented in the source) you might want to add the following to your .vimrc:
 
-	let g:miniBufExplMapWindowNavVim = 1 
-	let g:miniBufExplMapWindowNavArrows = 1 
-	let g:miniBufExplMapCTabSwitchBufs = 1 
-	let g:miniBufExplModSelTarget = 1 
+	let g:miniBufExplMapWindowNavVim = 1
+	let g:miniBufExplMapWindowNavArrows = 1
+	let g:miniBufExplMapCTabSwitchBufs = 1
+	let g:miniBufExplModSelTarget = 1
 
 
 
@@ -129,21 +129,21 @@ You can set language attribute in html using emmet_settings['lang'].
 	2014年1月13日 14:41:29
 
 
-`CTRL-Y`       Accept the currently selected match and stop completion. 
-`<Space>`      Accept the currently selected match and insert a space. 
-`CTRL-E`       Close the menu and not accept any match. 
+`CTRL-Y`       Accept the currently selected match and stop completion.
+`<Space>`      Accept the currently selected match and insert a space.
+`CTRL-E`       Close the menu and not accept any match.
 
 
-	filetype plugin on 
-	let g:pydiction_location = 'C:/vim/vimfiles/ftplugin/pydiction/complete-dict' 
-	let g:pydiction_menu_height = 20  "The default menu height is 15. 
+	filetype plugin on
+	let g:pydiction_location = 'C:/vim/vimfiles/ftplugin/pydiction/complete-dict'
+	let g:pydiction_menu_height = 20  "The default menu height is 15.
 
 
 
 
 ### pyflakes.vim
 
-	PyFlakes on-the-fly Python code checking 
+	PyFlakes on-the-fly Python code checking
 	http://www.vim.org/scripts/script.php?script_id=2441
 	py语法检查
 	2014年1月13日 15:36:25
