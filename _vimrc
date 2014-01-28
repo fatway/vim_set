@@ -35,8 +35,9 @@ set lines=40 columns=140                 " 设定窗口大小
 autocmd! bufwritepost _vimrc source %    " 修改后自动加载配置文件，无需重启
 set nocompatible                         " 禁用老的VI编辑模式
 set guifont=Consolas:h10.5               " 设置字体，大小
-set guioptions-=m                        " 隐藏menu
+"set guioptions-=m                        " 隐藏menu
 set guioptions-=T                        " 隐藏toolbar
+
 colorscheme slate                        " 使用配色方案
 
 
@@ -95,7 +96,7 @@ set mouse=a         " 在所有模式下启用鼠标
 set ic              " 搜索时忽略大小写
 set hls is          " 高亮搜索结果
 
-set fdm=indent      "启用代码折叠,模式为indent，模式表
+set fdm=indent      "启用代码折叠foldmethod,模式为indent，模式表
                     "manual  手工定义折叠
                     "indent  更多的缩进表示更高级别的折叠
                     "expr    用表达式来定义折叠
@@ -147,10 +148,10 @@ nmap <F3> :bn<CR>
 nmap <F4> :bp<CR>
 
 "启用minibuffer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
 
 
@@ -223,6 +224,7 @@ set completeopt=longest,menu
 set wildmenu                  " 自动补全时使用菜单式匹配列表
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType python runtime! autoload/pythoncomplete.vim
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -254,11 +256,11 @@ let php_folding=0         " 启用代码折叠（用于类和函数、自动）
 nmap <F5> :!"E:\Python27\python.exe" %<CR>
 
 "自动补全  pydiction
-let g:pydiction_location='F:\software\gVimPortable\Data\settings\vimfiles\ftplugin\pydiction\complete_dict'
+let g:pydiction_location='ftplugin/pydiction/complete_dict'
 "let g:pydiction_menu_height = 20
 
 "代码检查pyflakes  使用命令:cc
-let g:pyflakes_use_quickfix = 0   "disable quickfix support
+"let g:pyflakes_use_quickfix = 0   "disable quickfix support
 
 
 "缩进线提示（使用vim-indent-guides插件），不设定下面的参数，将用宽度为4的块级提示
