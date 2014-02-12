@@ -1,5 +1,5 @@
 """""""""""""""""" cat from vimrc_example """"""""""""""""""""""""""""""""""
-source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
@@ -34,7 +34,7 @@ endfunction
 set lines=40 columns=140                 " 设定窗口大小
 autocmd! bufwritepost _vimrc source %    " 修改后自动加载配置文件，无需重启
 set nocompatible                         " 禁用老的VI编辑模式
-set guifont=Consolas:h10.5               " 设置字体，大小
+set guifont=Consolas:h10.5                    " 设置字体，大小
 "set guioptions-=m                        " 隐藏menu
 set guioptions-=T                        " 隐藏toolbar
 
@@ -256,7 +256,8 @@ let php_folding=0         " 启用代码折叠（用于类和函数、自动）
 nmap <F5> :!"E:\Python27\python.exe" %<CR>
 
 "自动补全  pydiction
-let g:pydiction_location='ftplugin/pydiction/complete_dict'
+filetype plugin on
+let g:pydiction_location= $VIMRUNTIME . '\ftplugin\pydiction\complete_dict'
 "let g:pydiction_menu_height = 20
 
 "代码检查pyflakes  使用命令:cc
