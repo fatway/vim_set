@@ -91,8 +91,73 @@ Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 Tips:
 
-You can customize behavior of expanding with overriding config.
-This configuration will be merged at loading plugin.
+默认展开_功能键_为`<c-y>,` (即ctrl+y然后按逗号)  
+这里统一一个名称: `<c-y>`: 功能键, `,(逗号)`: 执行键  
+插件教程: https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
+
+示例:
+
+1. 搭建一个标准的html模板: `html:5` , 然后使用功能键后 再 按`,`执行键
+2. 常规扩展: `div>p#foo$*3>a`
+3. 处理已有文本:
+
+	test1  
+	test2  
+	test3
+
+  在visual模式下选中该三行, 执行功能键+逗号, 在下面的语法提示中输入: `ul>li*` (也可以用诸如:`blockquote`), 得到:
+
+	&lt;ul&gt;  
+		&lt;li&gt;test1&lt;/li&gt;  
+		&lt;li&gt;test2&lt;/li&gt;  
+		&lt;li&gt;test3&lt;/li&gt;  
+	&lt;/ul&gt;
+
+4. 其它的不再列举, 参看官方文档, 这里再给一个执行键对照表
+<table border="1">
+  <tr>
+    <th>执行键</th><th>执行效果</th>
+  </tr>
+  <tr>
+    <td>,(逗号)</td><td>展开缩写,或对选定内部执行定义</td>
+  </tr>
+  <tr>
+    <td>d</td><td>向内平衡标签</td>
+  </tr>
+  <tr>
+    <td>D</td><td>向外平衡标签</td>
+  </tr>
+  <tr>
+    <td>n</td><td>下一个编辑点</td>
+  </tr>
+  <tr>
+    <td>N</td><td>上一个编辑点</td>
+  </tr>
+  <tr>
+    <td>i</td><td>给img增加size(width/height)标签</td>
+  </tr>
+  <tr>
+    <td>m</td><td>merge合并行(Visual模式下)</td>
+  </tr>
+  <tr>
+    <td>k</td><td>去除当前标签(及其内容)</td>
+  </tr>
+  <tr>
+    <td>j</td><td>收缩或展示独立标签(&lt;div class='foo'&gt;&lt;/div&gt;  = &lt;div class='foo' /&gt;)</td>
+  </tr>
+  <tr>
+    <td>/</td><td>注释(或反注释)当前代码</td>
+  </tr>
+  <tr>
+    <td>a</td><td>将网址(需要http头)处理为a标签</td>
+  </tr>
+  <tr>
+    <td>A</td><td>将网址处理为网站信息引用块</td>
+  </tr>
+</table>
+
+
+其它: 自定义功能键
 
 	let g:user_emmet_settings = {
 	\  'indentation' : '  ',
@@ -109,8 +174,6 @@ This configuration will be merged at loading plugin.
 
 	let g:user_emmet_expandabbr_key = '<c-e>'
 	let g:use_emmet_complete_tag = 1
-
-You can set language attribute in html using emmet_settings['lang'].
 
 
 

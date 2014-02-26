@@ -86,6 +86,7 @@ set softtabstop=4   " 设置缩进
 set shiftwidth=4    " 设置平移距离
 set backspace=2     " ???
 
+set autoindent      " 开启自动缩进
 set smartindent     " 智能对齐方式
 set history=200     " 设置冒号命令和搜索命令的历史记录长度
 set showcmd         " 回显输入的命令
@@ -95,6 +96,7 @@ set mouse=a         " 在所有模式下启用鼠标
 
 set ic              " 搜索时忽略大小写
 set hls is          " 高亮搜索结果
+
 
 set fdm=indent      "启用代码折叠foldmethod,模式为indent，模式表
                     "manual  手工定义折叠
@@ -146,12 +148,6 @@ endfunction
 " 切换buffer
 nmap <F3> :bn<CR>
 nmap <F4> :bp<CR>
-
-"启用minibuffer
-"let g:miniBufExplMapWindowNavVim = 1
-"let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1
 
 
 
@@ -234,7 +230,7 @@ autocmd FileType java set omnifunc=javacomplete#Complet
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"PHP开发设置
 let g:javascript_enable_domhtmlcss=1   " javascript语法高亮脚本的设置
 
 
@@ -256,7 +252,6 @@ let php_folding=0         " 启用代码折叠（用于类和函数、自动）
 nmap <F5> :!"E:\Python27\python.exe" %<CR>
 
 "自动补全  pydiction
-filetype plugin on
 let g:pydiction_location= $VIMRUNTIME . '\ftplugin\pydiction\complete_dict'
 "let g:pydiction_menu_height = 20
 
