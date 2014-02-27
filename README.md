@@ -225,4 +225,71 @@ Coding时,使用`<TAB>`来弹出补全列表, 弹出后可执行的操作:
 
 
 
+### Tablify
+
+	Tablify : Plugin for making nice-loking tables from plain structured text 
+	http://www.vim.org/scripts/script.php?script_id=4358
+	表格转化插件
+	2014年2月27日 13:58:00
+
+将选定的文本(字段默认用|分隔, 或者用 b:tablify_raw_delimiter 在vimrc中指定)转换为线框包围的表格, 用法(功能键为右斜线 \):
+
+* `\tl or \tt` - 将选定文本转换为表格(默认文本左对齐)
+* `\tc` - 表格文本居中对齐
+* `\tr` - 表格文本右对齐
+* `\tu` - 反操作, 将选定的表格还原为文本
+* `\ta` - 选中当前整个表格
+
+对已经转换的表格, 还可执行如下操作:
+
+* `\tS` - 将表格排序, 支持数字和文本排序
+* `\tRL` - 表格文本重设为左对齐
+* `\tRR` - 表格文本重设为右对齐
+* `\tRC` - 表格文本重设为居中对齐
+
+
+操作表格内的当前位置光标:
+* `\tK` - move current row (where the cursor is) up
+* `\tJ` - move current row down
+* `\tL` - move current column (where the cursor is) right
+* `\tH` - move current column left
+
+实测, 将以下文本转换为表格:
+
+Artist | Song | Album | Year
+Pantera | Cemetery Gates | Cowboys from Hell | 1990
+Ozzy Osbourne | Let Me Hear You Scream | Scream | 2010
+
+结果如下:
+
++---------------+------------------------+-------------------+------+
+| Artist        | Song                   | Album             | Year |
++---------------+------------------------+-------------------+------+
+| Pantera       | Cemetery Gates         | Cowboys from Hell | 1990 |
++---------------+------------------------+-------------------+------+
+| Ozzy Osbourne | Let Me Hear You Scream | Scream            | 2010 |
++---------------+------------------------+-------------------+------+
+
+其它特殊效果:
+
+1. 区分标题行, 将文本标题行的分隔符换为 # , 转换后的表格标题行使用波浪线包围
+2. 表格太长影响展示效果时, 可以使用行内换行, 只需在较长的cell中, 适当加入 `\n` 即可
+
+配置参数: 
+
+	g:loaded_tablify               - 等于1时不加载该控件
+	b:tablify_headerDelimiter      - 标题行的文本分隔符, 默认为 #
+	b:tablify_delimiter            - 表格字段的分隔符, 默认为 |
+
+	b:tablify_vertDelimiter        - 表格包围线, 垂直分隔线 (默认为 |)
+	b:tablify_horDelimiter         - 表格包围线, 水平分隔线 (默认为 -)
+	b:tablify_horHeaderDelimiter   - 表格包围线, 标题行水平分隔线 (默认为 ~)
+	b:tablify_divideDelimiter      - 表格包围线, 交叉线 (默认为 +)
+
+	b:tablify_cellLeftPadding      - 表格左对齐时, 左边留白宽度, 默认为1
+	b:tablify_cellRightPadding     - 表格右对齐时, 右边留白宽度, 默认为1
+
+
+
+
 ### OTHERS TO BE ADD..
