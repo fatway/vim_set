@@ -1,52 +1,79 @@
 # Vim插件及配置
 
 启动配置与插件安装记录，目前插件主要针对python开发使用
-基于`gVim Portable` [(offical)](http://portableapps.com/apps/development/gvim_portable) 软件进行相关配置
-所有文件位于`..\gVimPortable\Data\settings`目录下
+20161009新安装vim8.0，采用ms-setup方式安装，安装后将安装目录配置为本项目目录，
+不需要包含vim80文件夹
 
 ---
 
 
-### trinity
+## pathogen
 
-	Trinity : the Trinity of taglist, NERDtree and SrcExpl: an IDE works like "Source Insight"
-	http://www.vim.org/scripts/script.php?script_id=2347
-	一站式开发集成插件，调用taglist,tree,srcexpl三个插件进行函数列表、文件目录
-	2014年1月13日 14:21:32
+安装插件管理器pathogen，方便统一管理插件
+	
+	$ git submodule add git@github.com:tpope/vim-pathogen.git vimfiles
 
-根据在vimrc文件中的设置来开关相应的功能窗口
+启用管理功能，需要在`_vimrc`文件中加入以下语句
 
-	nmap <F8>   :TrinityToggleAll<CR>             " 切换三个插件显示
-	nmap <F9>   :TrinityToggleSourceExplorer<CR>  " 切换源码提示插件
-	nmap <F10>  :TrinityToggleTagList<CR>         " 切换函数列表插件
-	nmap <F11>  :TrinityToggleNERDTree<CR>        " 切换文件目录插件
+	execute pathogen#infect()
+	syntax on
+	filetype plugin indent on
 
-
-三个独立插件如下（不需要再独立进行相关配置设定）
-
-	－
-	 |-- taglist.vim
-	 |     http://www.vim.org/scripts/script.php?script_id=273
-	 |     需要分析源代码的工具Ctags(http://ctags.sourceforge.net/)，
-	 |     解压缩后拷贝ctags.exe到app下的vim安装位置，或者放于system32
-	 |
-	 |-- SrcExpl
-	 |     http://www.vim.org/scripts/script.php?script_id=2179
-	 |     可以处定义跳转设定
-	 |
-	 |-- The NERD tree
-	 |     http://www.vim.org/scripts/script.php?script_id=1658
-	 |
+后期对其他插件安装与维护方法：
+	
+	# 安装
+	$ git submodule add 插件的Git仓库地址 vimfiles/bundle/插件名字
+	# 更新
+	$ git submodule foreach 'git checkout master && git pull'
+	# 确保在master分支下的话, 使用下面进行更新
+	$ git submodule foreach 'git stash && git pull && git stash clear'
+	# 删除插件
+	$ rm -rf bundle/插件名
+	$ git rm -r bundle/插件名
 
 
+---
 
-### NERD_commenter
+## 插件安装与使用对照表
 
-	http://www.vim.org/scripts/script.php?script_id=1218
-	代码注释插件
-	2014年1月13日 14:39:30
+### [taglist](https://github.com/vim-scripts/taglist.vim) | vimfiles/bundle/taglist
 
-NERD Commenter的常用键绑定，以C/C++文件为例，详析的使用方法，请:h NERDCommenter。在Normal或者Visual 模式下：
+需要分析源代码的工具Ctags(http://ctags.sourceforge.net/)，
+解压缩后拷贝ctags.exe到app下的vim安装位置，或者放于system32
+快捷键:
+
+* `<CR>`         跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样
+* `o`             在一个新打开的窗口中显示光标下tag
+* `<Space>`       显示光标下tag的原型定义
+* `u`             更新taglist窗口中的tag
+* `s`             更改排序方式，在按名字排序和按出现顺序排序间切换
+* `x`             taglist窗口放大和缩小，方便查看较长的tag
+* `+`             打开一个折叠，同zo
+* `-`             将tag折叠起来，同zc
+* `*`             打开所有的折叠，同zR
+* `=`             将所有tag折叠起来，同zM
+* `[[`            跳到前一个文件
+* `]]`            跳到后一个文件
+* `q`             关闭taglist窗口
+* `<F1>`          显示帮助
+
+### [SrcExpl](https://github.com/wesleyche/SrcExpl) | vimfiles/bundle/SrcExpl
+
+可以在定义跳转设定
+
+### [nerdtree](https://github.com/scrooloose/nerdtree) | vimfiles/bundle/nerdtree
+
+目录树插件, 快捷键:
+	`o`	展开左侧某个目录，再按一下就是合并目录 
+	`t`	在新 Tab 中打开选中文件/书签，并跳到新 Tab
+	`T`	在新 Tab 中打开选中文件/书签，但不跳到新 Tab
+	`P`	跳到根结点
+	`p`	跳到父结点
+	`q`	关闭 NerdTree 窗口
+
+### [nerdcommenter](https://github.com/scrooloose/nerdcommenter) | vimfiles/bundle/nerdcommenter
+
+代码注释插件, NERD Commenter的常用键绑定，以C/C++文件为例，详析的使用方法，请:h NERDCommenter。在Normal或者Visual 模式下：
 
 * `\ca`，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
 * `\cc`，注释当前行，或者选定块
@@ -62,37 +89,11 @@ Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 使用该插件需要设置 `filetype plugin on`
 
+### [emmet-vim](https://github.com/mattn/emmet-vim) | vimfiles/bundle/emmet-vim
 
-
-
-### bufexplorer
-
-	bufexplorer.zip : Buffer Explorer / Browser
-	http://www.vim.org/scripts/script.php?script_id=42
-	缓冲区查看，可以快速在已编辑过的文件之间进行切换
-	2014年2月12日 09:24:34
-
-原来的`minibufexpl`在打开`trinity`再切换文件时会出现窗口混乱的问题, 故改用`bufexplorer`  
-使用命令:
-
-* `\be` 当前窗口中打开缓冲区列表
-* `\bs` 在水平切分窗口中打开缓冲区
-* `\bv` 在垂直切分窗口中打开缓冲区 (与trinity不兼容)
-
-
-
-### Emmet
-
-	vim plugins for HTML and CSS hi-speed coding.
-	http://www.vim.org/scripts/script.php?script_id=2981
-	hmtl源码快速编辑
-	参考教程：http://docs.emmet.io/abbreviations/syntax/
-	2014年1月13日 14:40:41
-
-Tips:
-
+hmtl源码快速编辑  
 默认展开_功能键_为`<c-y>,` (即ctrl+y然后按逗号)  
-这里统一一个名称: `<c-y>`: 功能键, `,(逗号)`: 执行键  
+这里个人定义一下名称: `<c-y>`: 功能键, `,(逗号)`: 执行键  
 插件教程: https://raw.github.com/mattn/emmet-vim/master/TUTORIAL
 
 示例:
@@ -114,48 +115,23 @@ Tips:
 	&lt;/ul&gt;
 
 4. 其它的不再列举, 参看官方文档, 这里再给一个执行键对照表
-<table border="1">
-  <tr>
-    <th>执行键</th><th>执行效果</th>
-  </tr>
-  <tr>
-    <td>,(逗号)</td><td>展开缩写,或对选定内部执行定义</td>
-  </tr>
-  <tr>
-    <td>d</td><td>向内平衡标签</td>
-  </tr>
-  <tr>
-    <td>D</td><td>向外平衡标签</td>
-  </tr>
-  <tr>
-    <td>n</td><td>下一个编辑点</td>
-  </tr>
-  <tr>
-    <td>N</td><td>上一个编辑点</td>
-  </tr>
-  <tr>
-    <td>i</td><td>给img增加size(width/height)标签</td>
-  </tr>
-  <tr>
-    <td>m</td><td>merge合并行(Visual模式下)</td>
-  </tr>
-  <tr>
-    <td>k</td><td>去除当前标签(及其内容)</td>
-  </tr>
-  <tr>
-    <td>j</td><td>收缩或展示独立标签(&lt;div class='foo'&gt;&lt;/div&gt;  = &lt;div class='foo' /&gt;)</td>
-  </tr>
-  <tr>
-    <td>/</td><td>注释(或反注释)当前代码</td>
-  </tr>
-  <tr>
-    <td>a</td><td>将网址(需要http头)处理为a标签</td>
-  </tr>
-  <tr>
-    <td>A</td><td>将网址处理为网站信息引用块</td>
-  </tr>
-</table>
 
+	+--------+--------------------------------------------------------------------+
+	| 执行键 | 执行效果                                                           |
+	+--------+--------------------------------------------------------------------+
+	| ,(逗号)| 展开缩写,或对选定内部执行定义                                      |
+	| d      | 向内平衡标签                                                       |
+	| D      | 向外平衡标签                                                       |
+	| n      | 下一个编辑点                                                       |
+	| N      | 上一个编辑点                                                       |
+	| i      | 给img增加size(width/height)标签                                    |
+	| m      | merge合并行(Visual模式下)                                          |
+	| k      | 去除当前标签(及其内容)                                             |
+	| j      | 收缩或展示独立标签(<div class='foo'></div> = <div class='foo' />)  |
+	| /      | 注释(或反注释)当前代码                                             |
+	| a      | 将网址(需要http头)处理为a标签                                      |
+	| A      | 将网址处理为网站信息引用块                                         |
+	+--------+--------------------------------------------------------------------+
 
 其它: 自定义功能键
 
@@ -175,63 +151,17 @@ Tips:
 	let g:user_emmet_expandabbr_key = '<c-e>'
 	let g:use_emmet_complete_tag = 1
 
+### [vim-ident-guides](https://github.com/nathanaelkane/vim-indent-guides) | vimfiles/bundle/vim-ident-guides
 
-
-
-### Pydiction
-
-	Tab-complete your Python code
-	http://www.vim.org/scripts/script.php?script_id=850
-	python代码补全插件
-	2014年1月13日 14:41:29
-
-Coding时,使用`<TAB>`来弹出补全列表, 弹出后可执行的操作:
-
-* `CTRL-Y`    Accept the currently selected match and stop completion.
-* `<Space>`   Accept the currently selected match and insert a space.
-* `CTRL-E`    Close the menu and not accept any match.
-
-需要在启动配置文件中设定'字典路径' 和'补全列表大小'(可选)
-
-	filetype plugin on
-	let g:pydiction_location = 'C:/vim/vimfiles/ftplugin/pydiction/complete-dict'
-	let g:pydiction_menu_height = 20  "The default menu height is 15.
-
-
-
-### pyflakes
-
-	PyFlakes on-the-fly Python code checking
-	http://www.vim.org/scripts/script.php?script_id=2441
-	py语法检查
-	2014年1月13日 15:36:25
-
-使用命令为 `:cc`
-
-
-
-### vim-indent-guides
-
-	A Vim plugin for visually displaying indent levels in code
-	http://www.vim.org/scripts/script.php?script_id=3361
-	给代码显示缩进线
-	2014年1月13日 15:37:27
-
-切换缩进线显示命令: `\ig`
+给代码显示缩进线, 切换缩进线显示命令: `\ig`
 
 	let g:indent_guides_enable_on_vim_startup = 1  "启动时开启缩进线
 	let g:indent_guides_start_level = 2            "从第二级开始进行提示
 	let g:indent_guides_guide_size = 1             "缩进提示线宽度为1
 
+### [tablify](https://github.com/Stormherz/tablify) | vimfiles/bundle/tablify
 
-
-### Tablify
-
-	Tablify : Plugin for making nice-loking tables from plain structured text 
-	http://www.vim.org/scripts/script.php?script_id=4358
-	表格转化插件
-	2014年2月27日 13:58:00
-
+表格转化插件  
 将选定的文本(字段默认用|分隔, 或者用 b:tablify_raw_delimiter 在vimrc中指定)转换为线框包围的表格, 用法(功能键为右斜线 \):
 
 * `\tl or \tt` - 将选定文本转换为表格(默认文本左对齐)
@@ -256,19 +186,19 @@ Coding时,使用`<TAB>`来弹出补全列表, 弹出后可执行的操作:
 
 实测, 将以下文本转换为表格:
 
-Artist | Song | Album | Year
-Pantera | Cemetery Gates | Cowboys from Hell | 1990
-Ozzy Osbourne | Let Me Hear You Scream | Scream | 2010
+	Artist | Song | Album | Year  
+	Pantera | Cemetery Gates | Cowboys from Hell | 1990  
+	Ozzy Osbourne | Let Me Hear You Scream | Scream | 2010
 
 结果如下:
 
-+---------------+------------------------+-------------------+------+
-| Artist        | Song                   | Album             | Year |
-+---------------+------------------------+-------------------+------+
-| Pantera       | Cemetery Gates         | Cowboys from Hell | 1990 |
-+---------------+------------------------+-------------------+------+
-| Ozzy Osbourne | Let Me Hear You Scream | Scream            | 2010 |
-+---------------+------------------------+-------------------+------+
+	+---------------+------------------------+-------------------+------+  
+	| Artist        | Song                   | Album             | Year |  
+	+---------------+------------------------+-------------------+------+  
+	| Pantera       | Cemetery Gates         | Cowboys from Hell | 1990 |  
+	+---------------+------------------------+-------------------+------+  
+	| Ozzy Osbourne | Let Me Hear You Scream | Scream            | 2010 |  
+	+---------------+------------------------+-------------------+------+
 
 其它特殊效果:
 
@@ -289,7 +219,75 @@ Ozzy Osbourne | Let Me Hear You Scream | Scream | 2010
 	b:tablify_cellLeftPadding      - 表格左对齐时, 左边留白宽度, 默认为1
 	b:tablify_cellRightPadding     - 表格右对齐时, 右边留白宽度, 默认为1
 
+### [python-mode](https://github.com/klen/python-mode) | vimfiles/bundle/python-mode
+
+Python-mode is a vim plugin that helps you to create python code very quickly by utilizing libraries
+including pylint, rope, pydoc, pyflakes, pep8, and mccabe for features like static analysis,
+refactoring, folding, completion, documentation, and more.
+
+The plugin contains all you need to develop python applications in Vim.
+
+There is no need to install pylint, rope or any other Python libraries on your system.
+
+* Support Python version 2.6+ and 3.2+
+* Syntax highlighting
+* Virtualenv support
+* Run python code (<leader>r)
+* Add/remove breakpoints (<leader>b)
+* Improved Python indentation
+* Python folding
+* Python motions and operators (]], 3[[, ]]M, vaC, viM, daC, ciM, ...)
+* Code checking (pylint, pyflakes, pylama, ...) that can be run simultaneously (:PymodeLint)
+* Autofix PEP8 errors (:PymodeLintAuto)
+* Search in python documentation (K)
+* Code refactoring <rope refactoring library> (rope)
+* Strong code completion (rope)
+* Go to definition (<C-c>g for :RopeGotoDefinition)
+* And more, more ...
+
+### [vim-airline](https://github.com/bling/vim-airline) | vimfiles/bundle/vim-airline
+
+状态栏，默认在多窗口时才显示, 如果想要只有一个窗口时也显示该状态栏, 需要在vimrc中设置 `set laststatus=2`
+
+### [ctrlp](https://github.com/kien/ctrlp.vim) | vimfiles/bundle/ctrlp
+
+类似everything的快速文件查找与切换插件, 使用`<c-p>`打开
+
+### [tasklist](https://github.com/vim-scripts/TaskList.vim) | vimfiles/bundle/tasklist
+
+任务提示, 打开方式 `<leader>t`
+
+需要处自定义任务列表
+
+	let g:tlWindowPosition = 1  底部显示
+	let g:tlTokenList = ['TODO', 'UNDONE', 'HACK', 'WARN', 'NOTE']
+
+任务说明
+
+	TODO: 待完成任务
+	UNDONE: 未完成
+	HACK: 有问题需要修改
+	NOTE: 需要注意的事项
+	WARN: 警告（即代码有陷阱，需要特别注意）
+	ERROR: 错误的代码，且目前还无解。。
+	TEMP: 临时切换代码，如屏蔽某任务
+
+### [vim-startify](https://github.com/mhinz/vim-startify) | vimfiles/bundle/vim-startify
+
+替换vim的启动界面显示内容, 主要列出buffer列表和最近打开文件列表
+
+在文件列表中, 可用以下指令打开文件
+
+	b  当前窗口打开
+	s  split窗口打开
+	v  vsplit窗口打开
+	t  tab中打开
+	<cr>  执行以上
+
+正常的文件处理过程中, 如果要重现该启动界面, 可用`:Startify`实现
 
 
+### [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors) | vimfiles/bundle/vim-multiple-cursors
+### [vim-surround](https://github.com/tpope/vim-surround) | vimfiles/bundle/vim-surround
+### [vim-markdown](https://github.com/plasticboy/vim-markdown) | vimfiles/bundle/vim-markdown
 
-### OTHERS TO BE ADD..
